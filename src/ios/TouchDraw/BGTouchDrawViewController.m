@@ -69,7 +69,7 @@
 
     _touching = NO;
     self.colour = [UIColor blackColor];
-    
+
     self.strokeWidth = 1;
     if(self.setStrokeWidth > 0) {
         self.strokeWidth = self.setStrokeWidth;
@@ -140,18 +140,18 @@
 - (void)setUpToolbar
 {
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    
+
     UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                               target:nil
                                                                               action:nil];
-    
-    self.btColour = [[UIBarButtonItem alloc] initWithTitle:@"Schriftfarbe"
+
+    self.btColour = [[UIBarButtonItem alloc] initWithTitle:@"Color"
                                                      style:UIBarButtonItemStylePlain
                                                     target:self
                                                     action:@selector(toggleColour:event:)];
-    
+
     [self setColourButtonColour];
-    
+
     if(self.showColorSelect) {
         NSLog(@"showColorSelect");
         [items addObject:self.btColour];
@@ -159,12 +159,12 @@
     } else {
         NSLog(@"showColorSelect NOT");
     }
-    
-    self.btStroke = [[UIBarButtonItem alloc] initWithTitle:@"Strichstärke"
+
+    self.btStroke = [[UIBarButtonItem alloc] initWithTitle:@"Stroke"
                                                      style:UIBarButtonItemStylePlain
                                                     target:self
                                                     action:@selector(toggleStrokeWidth:event:)];
-                                                    
+
     if(self.showStrokeWidthSelect) {
         NSLog(@"showStrokeWidthSelect");
         [items addObject:self.btStroke];
@@ -172,7 +172,7 @@
     } else {
         NSLog(@"showStrokeWidthSelect NOT");
     }
-    
+
     UIBarButtonItem *btRecycle = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
                                                                                target:self
                                                                                action:@selector(clearAll)];
@@ -183,18 +183,18 @@
     UIBarButtonItem *btSave = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                             target:self
                                                                             action:@selector(saveAll)];
-    
+
     [items addObject:btSave];
     [items addObject:flexItem];
-    
+
     //NSArray *items = [NSArray arrayWithObjects:self.btColour, flexItem, self.btStroke, flexItem, btRecycle, flexItem, btSave, nil];
     //[self setToolbarItems:items animated:YES];
-  
+
     [self setToolbarItems:items animated:YES];
 
     [[self navigationController] setToolbarHidden:NO animated:YES];
     //self.navigationController.toolbar.barStyle = UIBarStyleBlackTranslucent;
-    
+
     // Title text color Black => Text appears in white
     self.navigationController.toolbar.barStyle = UIBarStyleBlack;
     self.navigationController.toolbar.translucent = false;
@@ -284,13 +284,13 @@
 - (void)showColourButtons
 {
     if (!coloursShown) {
-        
+
         self.yellowbutton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.redButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.blueButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.greenButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.blackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        
+
         self.yellowbutton.alpha = 0.0;
         self.redButton.alpha = 0.0;
         self.greenButton.alpha = 0.0;
@@ -320,15 +320,15 @@
         [self.redButton.layer setCornerRadius:25.0f];
 
         [self.redButton setTitle:@" " forState:UIControlStateNormal];
-        
+
         if([self.colour isEqual:[UIColor redColor]]) {
             self.redButton.enabled = NO;
         }
-    
+
         [self.view addSubview:self.redButton];
 
-        
-        
+
+
         self.yellowbutton.backgroundColor = [UIColor yellowColor];
         [self.yellowbutton setTitleColor:[UIColor whiteColor]
                                forState:UIControlStateNormal];
@@ -340,15 +340,15 @@
         [self.yellowbutton.layer setCornerRadius:25.0f];
 
         [self.yellowbutton setTitle:@" " forState:UIControlStateNormal];
-        
+
         if([self.colour isEqual:[UIColor yellowColor]]) {
             self.yellowbutton.enabled = NO;
         }
-    
+
         [self.view addSubview:self.yellowbutton];
-        
-        
-        
+
+
+
         self.blueButton.backgroundColor = [UIColor blueColor];
         [self.blueButton setTitleColor:[UIColor whiteColor]
                              forState:UIControlStateNormal];
@@ -360,11 +360,11 @@
         [self.blueButton.layer setCornerRadius:25.0f];
 
         [self.blueButton setTitle:@" " forState:UIControlStateNormal];
-        
+
         if([self.colour isEqual:[UIColor blueColor]]) {
             self.blueButton.enabled = NO;
         }
-    
+
         [self.view addSubview:self.blueButton];
 
         self.greenButton.backgroundColor = [UIColor greenColor];
@@ -378,11 +378,11 @@
         [self.greenButton.layer setCornerRadius:25.0f];
 
         [self.greenButton setTitle:@" " forState:UIControlStateNormal];
-        
+
         if([self.colour isEqual:[UIColor greenColor]]) {
             self.greenButton.enabled = NO;
         }
-    
+
         [self.view addSubview:self.greenButton];
 
         self.blackButton.backgroundColor = [UIColor blackColor];
@@ -396,48 +396,48 @@
         [self.blackButton.layer setCornerRadius:25.0f];
 
         [self.blackButton setTitle:@" " forState:UIControlStateNormal];
-        
+
         if([self.colour isEqual:[UIColor blackColor]]) {
             self.blackButton.enabled = NO;
         }
-        
+
         [self.view addSubview:self.blackButton];
 
         coloursShown = YES;
 
         float toolBarOriginY = self.navigationController.toolbar.frame.origin.y;
         [UIView animateWithDuration:0.3 animations:^{
-            
+
             if([self.colour isEqual:[UIColor yellowColor]]) {
                 self.yellowbutton.frame = CGRectMake(10.0, toolBarOriginY - 5*(50.0 + 10.0), 90.0, 50.0);
             } else {
                 self.yellowbutton.frame = CGRectMake(10.0, toolBarOriginY - 5*(50.0 + 10.0), 50.0, 50.0);
             }
-            
+
             if([self.colour isEqual:[UIColor redColor]]) {
                 self.redButton.frame = CGRectMake(10.0, toolBarOriginY - 4*(50.0 + 10.0), 90.0, 50.0);
             } else {
                 self.redButton.frame = CGRectMake(10.0, toolBarOriginY - 4*(50.0 + 10.0), 50.0, 50.0);
             }
-            
+
             if([self.colour isEqual:[UIColor blueColor]]) {
                 self.blueButton.frame = CGRectMake(10.0, toolBarOriginY - 3*(50.0 + 10.0), 90.0, 50.0);
             } else {
                 self.blueButton.frame = CGRectMake(10.0, toolBarOriginY - 3*(50.0 + 10.0), 50.0, 50.0);
             }
-            
+
             if([self.colour isEqual:[UIColor greenColor]]) {
                 self.greenButton.frame = CGRectMake(10.0, toolBarOriginY - 2*(50.0 + 10.0), 90.0, 50.0);
             } else {
                 self.greenButton.frame = CGRectMake(10.0, toolBarOriginY - 2*(50.0 + 10.0), 50.0, 50.0);
             }
-            
+
             if([self.colour isEqual:[UIColor blackColor]]) {
                 self.blackButton.frame = CGRectMake(10.0, toolBarOriginY - (50.0 + 10.0), 90.0, 50.0);
             } else {
                 self.blackButton.frame = CGRectMake(10.0, toolBarOriginY - (50.0 + 10.0), 50.0, 50.0);
             }
-            
+
             self.yellowbutton.alpha = 1.0;
             self.redButton.alpha = 1.0;
             self.greenButton.alpha = 1.0;
@@ -453,7 +453,7 @@
     if (!strokeWidthsShown) {
         float toolBarOriginY = self.navigationController.toolbar.frame.origin.y;
         //CGRect frame = CGRectMake(20, toolBarOriginY - (50.0 + 10.0), 50, 20);
-        
+
         UISlider *slider1 = [[UISlider alloc] init];
         [slider1 addTarget:self action:@selector(strokeWidthChanged:) forControlEvents:UIControlEventValueChanged];
         [slider1 setBackgroundColor:[UIColor clearColor]];
@@ -462,12 +462,12 @@
         slider1.continuous = NO;
         slider1.value = self.strokeWidth;
         slider1.contentMode = UIViewContentModeScaleToFill;
-        
+
         [self.view addSubview:slider1];
-        
+
         self.strokeSlider = slider1;
-        
-        
+
+
         strokeWidthsShown = YES;
 
         //[UIView animateWithDuration:0.3 animations:^{
@@ -493,7 +493,7 @@
     //{
     //    CGContextSetBlendMode(cgref, kCGBlendModeNormal);
     //}
-    
+
     //[self setColourButtonColour];
 }
 
@@ -518,7 +518,7 @@
         {
             [_btColour setTintColor:self.colour];
         }
-        
+
         NSLog(@"self.colour !!!!! = %@", self.colour);
         /*CGContextRef ctx = UIGraphicsGetCurrentContext();
 
@@ -549,7 +549,7 @@
                                                 self->buttonsAnimationStartFrame.origin.y, 50.0, 40.0);
             self.blackButton.frame = CGRectMake(self->buttonsAnimationStartFrame.origin.x,
                                                 self->buttonsAnimationStartFrame.origin.y, 50.0, 40.0);
-            
+
             self.yellowbutton.alpha = 0.0;
             self.redButton.alpha = 0.0;
             self.greenButton.alpha = 0.0;
@@ -605,13 +605,13 @@
 
 
         //NSLog(@"drawLayer: colour = %@", self.colour);
-        
+
         // Add path to context
         CGContextAddPath(ctx, _path.CGPath);
         CGContextSetLineWidth(ctx, self.strokeWidth);
-        
+
         CGContextSetFillColorWithColor(ctx, [self.colour CGColor]);
-        
+
         CGContextSetStrokeColorWithColor(ctx, [self.colour CGColor]);
         CGContextStrokePath(ctx);
 
@@ -665,38 +665,38 @@
 - (void)clearAll
 {
     NSLog(@"clearAll ");
-    
+
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Notiz löschen" message:@"Alle Daten zurücksetzen?" preferredStyle:UIAlertControllerStyleAlert];
-    
+
     UIAlertAction *buttonOk = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self actionClearOk];
     }];
-       
+
     UIAlertAction *buttonCancel = [UIAlertAction actionWithTitle:@"Abbrechen" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
     }];
 
     [controller addAction:buttonCancel];
     [controller addAction:buttonOk];
-    
+
     [self presentViewController:controller animated:YES completion:nil];
 }
 
 -(void) actionClearOk {
     _hasDrawing = NO;
-    
+
     // Clear the collections
     _clearCanvasLayer = YES;
     _clearBackgroundLayer = YES;
-    
+
     //clear the cache image
     UIGraphicsBeginImageContext(_contentSize);
     UIColor *color = [UIColor clearColor];
     [color set];
     UIRectFill(CGRectMake(0.0, 0.0, _contentSize.width, _contentSize.height));
-    
+
     _cacheImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+
     // Redraw
     [_canvasLayer setNeedsDisplay];
     [_backgroundLayer setNeedsDisplay];
