@@ -666,13 +666,13 @@
 {
     NSLog(@"clearAll ");
 
-    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Notiz löschen" message:@"Alle Daten zurücksetzen?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Delete traces" message:@"Reset all traces?" preferredStyle:UIAlertControllerStyleAlert];
 
     UIAlertAction *buttonOk = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self actionClearOk];
     }];
 
-    UIAlertAction *buttonCancel = [UIAlertAction actionWithTitle:@"Abbrechen" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction *buttonCancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
     }];
 
     [controller addAction:buttonCancel];
